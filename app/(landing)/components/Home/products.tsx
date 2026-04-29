@@ -10,44 +10,44 @@ const productsList = [
     {
         Name:"SportOn Hyperfast Shoes",
         Category:"Running",
-        Price: "329000",
+        Price: 329000,
         ImageUrl : "product-3.png"
     },{
         Name:"SportOn Rockets Tennis",
         Category:"Tennis",
-        Price: "999000",
+        Price: 999000,
         ImageUrl : "product-2.png"
     },{
         Name:"SportOn SlowLivin",
         Category:"Running",
-        Price: "199000",
+        Price: 199000,
         ImageUrl : "product-1.png"
     },{
         Name:"SportOn HyperSoccer v2",
         Category:"Football",
-        Price: "299000",
+        Price: 299000,
         ImageUrl : "product-4.png"
     },{
        Name:"SportOn HyperSoccer v2",
         Category:"Football",
-        Price: "299000",
+        Price: 299000,
         ImageUrl : "product-4.png"
 
     },{
         Name:"SportOn SlowLivin",
         Category:"Running",
-        Price: "199000",
+        Price: 199000,
         ImageUrl : "product-5.png"
 
     },{
         Name:"SportOn Hyperfast Shoes",
         Category:"Running",
-        Price: "329000",
+        Price: 329000,
         ImageUrl : "product-8.png"
     },{
         Name:"SportOn Rockets Tennis",
         Category:"Tennis",
-        Price: "999000",
+        Price: 999000,
         ImageUrl : "product-7.png"
     }
 
