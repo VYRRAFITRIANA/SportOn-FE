@@ -4,7 +4,7 @@ import Link  from "next/link";
 
 const footer = () => {
     return (
-        <section className="bg-dark-alternate text-white " id="footer">
+        <section className="bg-dark-alternate text-white px-10" id="footer">
             <div className="flex justify-between container mx-auto py-14 pb-24">
                 <div className="w-105">
                     <Image src="/images/logo-white (1).svg"  

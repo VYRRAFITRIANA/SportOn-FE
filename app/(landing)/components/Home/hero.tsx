@@ -5,20 +5,20 @@ import Image from "next/image";
 const Hero = () => {
   return (
     <section
-     className="container mx-auto min-h-screen flex items-center relative 
+     className="container py-10 mx-auto min-h-screen flex items-center relative 
      " id="hero"  
     >
      
       <div className="relative self-center">
-        <Image src="/images/img-basketball-transparent.svg" alt="Hero Image" width={625} height={600}
-     className=" grayscale absolute -left-0 -top-20 " />
+        <Image src="/images/img-basketball-transparent.svg" alt="Hero Image" width={600} height={550}
+     className=" grayscale absolute -left-0 -top-15 " />
 
-        <div className="relative ml-40 w-full">
+        <div className="relative px-30 py-15w-full">
           <div className="text-primary italic bg-primary/20 px-4 py-[5px] w-max rounded-xl">
             friday sale, 50%
           </div>
 
-          <h1 className="font-extrabold text-[95px] italic bg-gradient-to-b leading-tight from-black to-[#979797] bg-clip-text text-transparent">
+          <h1 className="font-extrabold text-[80px] italic bg-gradient-to-b leading-tight from-black to-[#979797] bg-clip-text text-transparent">
             WEAR YOUR <br />
             TOP-QUALITY <br />
             SPORTSWEAR
@@ -47,11 +47,12 @@ const Hero = () => {
           </div>
         </div>
         <Image src="/images/img-hero.png" alt="Hero Image" width={700} height={950}
-        className="absolute -right-5 top-1/2 -translate-y-1/2" />
+        className="absolute -right-0 top-1/2 -translate-y-1/2" />
 
       </div>
-      <Image src="/images/img-ornament-hero.svg" alt="Shape Hero" width={420} height={420}
-      className="absolute -right-[200px] top-1/2 -translate-y-1/2" />
+      <Image src="/images/img-ornament-hero.svg" alt="Shape Hero" width={400} height={420}
+      className="absolute -right-[200px] top-1/2 -translate-y-1/2
+      " />
     </section>
     
   );

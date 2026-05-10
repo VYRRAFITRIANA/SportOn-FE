@@ -4,7 +4,7 @@ import Products from "./components/Home/products";
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-hidden">
       <Hero />
       <Categories />
       <Products />

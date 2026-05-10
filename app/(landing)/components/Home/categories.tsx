@@ -13,7 +13,7 @@ const categoriesList = [
 
 const Categories = () => {
   return (
-    <section id="categories" className="container mx-auto py-20">
+    <section id="categories" className="container mx-auto py-20 px-10">
       <div className="flex justify-between items-center">
         <h2 className="text-[24px] font-bold">
           Browse By Categories
