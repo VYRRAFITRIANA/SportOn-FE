@@ -1,17 +1,23 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
+import { Category } from "@/app/types";
+import {getImageUrl} from "@/app/lib/api";
 
-const categoriesList = [
-  { name: "Running", imageUrl: "category-running.svg" },
-  { name: "Tenis", imageUrl: "category-tenis.svg" },
-  { name: "Basketball", imageUrl: "category-basketball.svg" },
-  { name: "Football", imageUrl: "category-football.svg" },
-  { name: "Badminton", imageUrl: "category-badminton.svg" },
-  { name: "Swimming", imageUrl: "category-swimming.svg" },
-];
+// const categoriesList = [
+//   { name: "Running", imageUrl: "category-running.svg" },
+//   { name: "Tenis", imageUrl: "category-tenis.svg" },
+//   { name: "Basketball", imageUrl: "category-basketball.svg" },
+//   { name: "Football", imageUrl: "category-football.svg" },
+//   { name: "Badminton", imageUrl: "category-badminton.svg" },
+//   { name: "Swimming", imageUrl: "category-swimming.svg" },
+// ];
 
-const Categories = () => {
+type TCategoriesProps = {
+  categories : Category[];
+}
+
+const Categories = ({categories}:TCategoriesProps) => {
   return (
     <section id="categories" className="container mx-auto py-20 px-10">
       <div className="flex justify-between items-center">
@@ -29,13 +35,14 @@ const Categories = () => {
       </div>
 
       <div className="grid grid-cols-6 gap-12 mt-10">
-        {categoriesList.map((category, index) => (
+        {categories.map((category) => (
           <div
-            key={index}
+            key={category._id}
             className="rounded-lg bg-gradient-to-r from-[#F1F1F1] to-[#F7F7F7] w-full aspect-square flex flex-col items-center justify-center gap-4"
           >
             <Image
-              src={`/images/categories/${category.imageUrl}`}
+            
+              src={getImageUrl(category.imageUrl)}
               alt={category.name}
               width={85}
               height={85}
@@ -49,5 +56,6 @@ const Categories = () => {
     </section>
   );
 };
+
 
 export default Categories;

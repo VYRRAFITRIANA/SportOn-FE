@@ -51,7 +51,7 @@ const Hero = () => {
 
       </div>
       <Image src="/images/img-ornament-hero.svg" alt="Shape Hero" width={400} height={420}
-      className="absolute -right-[200px] top-1/2 -translate-y-1/2
+      className="absolute -right-[200px] top-1/2 -translate-y-1/2 
       " />
     </section>
     

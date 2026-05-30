@@ -3,36 +3,42 @@
 import { FiTrash2,FiArrowRight, FiCreditCard } from "react-icons/fi";
 import Button from "../UI/button";
 import PriceFormatted from "@/app/utils/PriceFormatted";
-import{cart} from "../UI/Cart-popup";
+// import{cart} from "../UI/Cart-popup";
 import Image from "next/image";
 import CardWithHeader from "../UI/card-with-header";
 import {useRouter} from "next/navigation";
+import { useCartStore } from "@/app/hooks/use-cart";
+import {getImageUrl} from "@/app/lib/api";
 
+type TCartItems = {
+    handlePayment : () => void;
+}
 
-const cartItems = () => {
+const cartItems = ({handlePayment}:TCartItems) => {
     const {push} =useRouter();  
-    const totalPrice = cart.reduce((total, item) => total + item.Price * item.qty, 0);
+    const { items, removeItem } = useCartStore();
+    const totalPrice = items.reduce((total, item) => total + item.price * item.qty, 0);
       const processPayment = () => {
 
       }
     return (
         <CardWithHeader title="Cart Items">
-            <div className="overflow-auto max-h-[300px]"> 
-                { cart.map((item, index) => (
+            <div className="overflow-auto max-h-[270px] h-full justify-between"> 
+                { items.map((item, index) => (
                     <div  key={index} className ="border-b border-gray-200 p-5 flex gap-3 ">
                         <div className = "bg-primary-light aspect-square w-16 flex justify-center items-center">
-                            <Image src={`/images/products/${item.ImageUrl}`} 
-                                    alt={item.Name} width={63} height={63}
+                             <Image src={getImageUrl(item.imageUrl)} 
+                                    alt={item.name} width={63} height={63}
                                     className="aspect-square object-contain" />
                         </div>
                         <div className="self-center">
-                            <div className="font-medium text-sm">{item.Name}</div>
+                            <div className="font-medium text-sm">{item.name}</div>
                             <div className="flex gap-3 font-medium text-xs">
                                 <div className ="">{item.qty}x</div>
-                                <div className="text-primary font-medium">{PriceFormatted(item.Price)}</div>
+                                <div className="text-primary font-medium">{PriceFormatted(item.price)}</div>
                             </div>   
                         </div>
-                            <Button size="small" variant="ghost" className ="w-7 h-7 p-0! self-center ml-auto">
+                            <Button size="small" variant="ghost" className ="w-7 h-7 p-0! self-center ml-auto"  onClick={() => removeItem(item._id)}>
                                 <FiTrash2 />
                             </Button>
                     </div>
@@ -43,7 +49,7 @@ const cartItems = () => {
                     <div className="text-sm">Total</div>
                     <div className="text-primary text-xs">{PriceFormatted(totalPrice)}</div>
                 </div>
-                <Button variant="dark" size="small" className="mt-4 w-full" onClick={() => push('/payment')}   >
+                <Button variant="dark" size="small" className="mt-4 w-full" onClick={handlePayment}   >
                     <FiCreditCard />  Process Payment 
                 </Button>
             </div>

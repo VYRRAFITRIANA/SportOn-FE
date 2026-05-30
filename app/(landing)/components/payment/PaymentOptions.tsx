@@ -1,46 +1,53 @@
-
-
 import CardWithHeader from "../UI/card-with-header";
-import {FiCreditCard} from "react-icons/fi";
+import { FiCreditCard } from "react-icons/fi";
 
-const paymentList = [
-    {
-        BankName: "BCA",
-        AccountNumber: 1234567890,
-        AccountHolder: "PT SportOn Indonesia"
-    },
-    {
-        BankName: "BNI",
-        AccountNumber: 9876543210,
-        AccountHolder: "PT SportOn Indonesia"
-    },
-    {
-        BankName: "BRI",
-        AccountNumber: 1122334455,
-        AccountHolder: "PT SportOn Indonesia"
-    }
-];
-const PaymentOptions = () => {
-    return (
-        <CardWithHeader title="Payment Options">
-          {
-            paymentList.map((payment, index) => (
-                
-                <div key={index} className="flex gap-5 p-5 border-b border-gray-100">
-                    <div className="bg-blue-100 p-4 text-blue-500 h-fit self-center">
-                        <FiCreditCard size={24}  />
-                    </div>
-                    <div className="self-center">
-                        <div className="font-bold">{payment.BankName}</div>
-                        <div className="text-sm">{payment.AccountNumber}</div>
-                        <div className="text-sm opacity-70">{payment.AccountHolder}</div>
-                    </div>
-                    <div className="h-fit ml-auto self-center bg-blue-50 text-gray-700 text-xs px-2 py-1"> Bank Transfer</div>
-                </div>
-            ))
-        }
-        </CardWithHeader>
-    );
-}
+import { Bank } from "@/app/types";
+
+type TBankProps = {
+  bank?: Bank[];
+};
+
+const PaymentOptions = ({ bank = [] }: TBankProps) => {
+      console.log("BANK DATA:", bank);
+
+  return (
+    <CardWithHeader title="Payment Options">
+        
+      
+      {bank.map((payment) => (
+        <div
+          key={payment._id}
+          className="flex gap-5 p-5 border-b border-gray-100 last:border-b-0"
+        >
+          
+          {/* Icon */}
+          <div className="bg-blue-100 p-4 text-blue-500 h-fit self-center rounded-lg">
+            <FiCreditCard size={24} />
+          </div>
+
+          {/* Info */}
+          <div className="self-center">
+            <div className="font-bold">
+              {payment.bankName}
+            </div>
+
+            <div className="text-sm">
+              {payment.accountNumber}
+            </div>
+
+            <div className="text-sm opacity-70">
+              {payment.accountName}
+            </div>
+          </div>
+
+          {/* Badge */}
+          <div className="h-fit ml-auto self-center bg-blue-50 text-gray-700 text-xs px-2 py-1 rounded-md">
+            Bank Transfer
+          </div>
+        </div>
+      ))}
+    </CardWithHeader>
+  );
+};
 
 export default PaymentOptions;

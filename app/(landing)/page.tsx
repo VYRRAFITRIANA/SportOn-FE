@@ -1,13 +1,20 @@
 import Hero from "./components/Home/hero";
 import Categories from "./components/Home/categories";
 import Products from "./components/Home/products";
+import {getAllCategories} from "../services/category-service";
+import {getAllProducts} from "../services/product-services";
 
-export default function Home() {
+export default async function Home() {
+ const [categories,products] = await Promise.all([
+    getAllCategories(),
+    getAllProducts()
+  ] );
+
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden pt-24">
       <Hero />
-      <Categories />
-      <Products />
+      <Categories categories={categories} />
+      <Products products={products} />
     </main>
   );
 }
