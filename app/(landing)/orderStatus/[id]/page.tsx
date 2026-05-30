@@ -3,8 +3,11 @@
 import { getTransactionById } from "@/app/services/transaction-services";
 import OrderConfirmed from "../../components/order-status/order-confirm";
 import OrderSummited from "../../components/order-status/order-summited";
-import { TPageProps } from "../../product/[id]/page";
+// import { TPageProps } from "../../product/[id]/page";
 import OrderRejected from "../../components/order-status/order-rejected"
+type TPageProps = {
+    params: Promise<{id : string}>;
+};
 
 const OrderStatus = async ({ params }: TPageProps) => {
 
