@@ -1,24 +1,30 @@
 export async function fetchAPI<T>(
-    endpoint: string,
-    options?: RequestInit
+  endpoint: string,
+  options?: RequestInit
 ): Promise<T> {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`, {
-        ...options,
-        cache:options?.cache || "no-store",//dibuat no-store agar data selalu fresh, bisa diubah sesuai kebutuhan
-    });
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "";
 
-    if (!res.ok) {
-        let errorMessage = `Failed to fetch data from ${endpoint}`;
-        try{
-            const errorData = await res.json();
-            errorMessage = errorData.message || errorData.error || errorMessage;
-        }catch (e) {            
-            console.log(e);
-        }
-        throw new Error(errorMessage);
+  const url = `${baseUrl.replace(/\/$/, "")}/${endpoint.replace(/^\//, "")}`;
+
+  const res = await fetch(url, {
+    ...options,
+    cache: options?.cache || "no-store",
+  });
+
+  if (!res.ok) {
+    let errorMessage = `Failed to fetch data from ${endpoint}`;
+
+    try {
+      const errorData = await res.json();
+      errorMessage = errorData.message || errorData.error || errorMessage;
+    } catch (e) {
+      console.log("Failed to parse error response", e);
     }
 
-    return res.json();
+    throw new Error(errorMessage);
+  }
+
+  return res.json();
 }
 export function getImageUrl(path: string) {
   if (path.startsWith("http")) return path;
