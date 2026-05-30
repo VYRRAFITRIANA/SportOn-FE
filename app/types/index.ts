@@ -33,7 +33,7 @@ export interface Bank {
 export interface Transaction {
     _id : string;
     paymentProof: string;
-    status : "pending" | "paid" |"rejector";
+    status : "pending" | "paid" |"rejected";
     purchasedItems: {
       productId: string;
       qty: number;
