@@ -1,30 +1,32 @@
 export async function fetchAPI<T>(
   endpoint: string,
   options?: RequestInit
-): Promise<T> {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "";
+): Promise<T | null> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  const url = `${baseUrl.replace(/\/$/, "")}/${endpoint.replace(/^\//, "")}`;
-
-  const res = await fetch(url, {
-    ...options,
-    cache: options?.cache || "no-store",
-  });
-
-  if (!res.ok) {
-    let errorMessage = `Failed to fetch data from ${endpoint}`;
-
-    try {
-      const errorData = await res.json();
-      errorMessage = errorData.message || errorData.error || errorMessage;
-    } catch (e) {
-      console.log("Failed to parse error response", e);
+    if (!baseUrl) {
+      console.error("Missing NEXT_PUBLIC_API_URL");
+      return null;
     }
 
-    throw new Error(errorMessage);
-  }
+    const url = `${baseUrl.replace(/\/$/, "")}/${endpoint.replace(/^\//, "")}`;
 
-  return res.json();
+    const res = await fetch(url, {
+      ...options,
+      cache: options?.cache || "no-store",
+    });
+
+    if (!res.ok) return null;
+
+    const contentType = res.headers.get("content-type");
+    if (!contentType?.includes("application/json")) return null;
+
+    return await res.json();
+  } catch (err) {
+    console.error("fetchAPI error:", err);
+    return null;
+  }
 }
 export function getImageUrl(path: string) {
   if (path.startsWith("http")) return path;

@@ -17,13 +17,19 @@ type TCategoriesProps = {
   categories : Category[];
 }
 
-const Categories = ({categories}:TCategoriesProps) => {
+const Categories = ({ categories }: TCategoriesProps) => {
+  if (!categories?.length) {
+    return (
+      <section className="container mx-auto py-20 px-10">
+        <p>No categories found</p>
+      </section>
+    );
+  }
+
   return (
     <section id="categories" className="container mx-auto py-20 px-10">
       <div className="flex justify-between items-center">
-        <h2 className="text-[24px] font-bold">
-          Browse By Categories
-        </h2>
+        <h2 className="text-[24px] font-bold">Browse By Categories</h2>
 
         <Link
           href="#"
@@ -41,12 +47,12 @@ const Categories = ({categories}:TCategoriesProps) => {
             className="rounded-lg bg-gradient-to-r from-[#F1F1F1] to-[#F7F7F7] w-full aspect-square flex flex-col items-center justify-center gap-4"
           >
             <Image
-            
               src={getImageUrl(category.imageUrl)}
-              alt={category.name}
+              alt={category.name || "category"}
               width={85}
               height={85}
             />
+
             <div className="text-primary font-medium text-xl">
               {category.name}
             </div>
