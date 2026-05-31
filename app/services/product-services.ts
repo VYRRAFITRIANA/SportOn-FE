@@ -1,12 +1,13 @@
 import { Product } from "../types";
 import { fetchAPI } from "../lib/api";
 
-export const getAllProducts = async () : Promise<Product[]> => {
+export const getAllProducts = async (): Promise<Product[]> => {
+  const products = await fetchAPI<Product[]>("/products");
+  return products ?? [];
+};
 
-    return await fetchAPI<Product[]>("/products");
-}
-
-export const getProductById = async (id: string) : Promise<Product> => {
-
-    return await fetchAPI<Product>(`/products/${id}`);
-}
+export const getProductById = async (
+  id: string
+): Promise<Product | null> => {
+  return await fetchAPI<Product>(`/products/${id}`);
+};

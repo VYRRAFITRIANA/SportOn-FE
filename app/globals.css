@@ -46,3 +46,11 @@
 .input-group-admin textarea {
   @apply   px-2 py-2 border border-gray-300  rounded-md w-full focus:border-gray-500 outline-none text-sm;
 }
+.input-group label{
+   @apply block text-base mb-1;
+}
+.input-group input,  
+.input-group select,
+.input-group textarea {
+  @apply   px-2 py-2 border border-gray-300  rounded-md w-full focus:border-gray-500 outline-none text-sm;
+}
