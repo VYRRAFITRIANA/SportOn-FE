@@ -14,7 +14,9 @@ import DeleteConfirmationModal from "@/app/(dashboard)/components/ui/modal-delet
 const CategoryManagement = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
-    const [categories, setCategories] = useState([]);
+
+
+const [categories, setCategories] = useState<Category[]>([]);State([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [categoryToDeleteId, setCategoryToDeleteId] = useState("");
