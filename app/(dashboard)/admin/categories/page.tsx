@@ -15,8 +15,7 @@ const CategoryManagement = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
 
-
-const [categories, setCategories] = useState<Category[]>([]);State([]);
+    const [categories, setCategories] = useState<Category[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [categoryToDeleteId, setCategoryToDeleteId] = useState("");
