@@ -77,7 +77,7 @@ const TransactionsManagement = () => {
 
            
             <TransactionsTable transactions={transactions} onViewDetails={handleViewDetails} />
-            {/* <TransactionsModal transactions = {selectedTransactionId} onStatusChange = {handleStatusChange}isOpen={isModalOpen} onClose={handleCloseModal} /> */}
+            <TransactionsModal transactions = {selectedTransactionId} onStatusChange = {handleStatusChange}isOpen={isModalOpen} onClose={handleCloseModal} />
 
            
             
