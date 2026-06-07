@@ -2,21 +2,29 @@ import Image from "next/image";
 import PriceFormatted  from "@/app/utils/PriceFormatted";
 import Button from "@/app/(landing)/components/UI/button";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
+import { Category } from "@/app/types";
+import { getImageUrl } from "@/app/lib/api";
 
-const   CategoryData = [
-    {
-        name: "Running",
-        imageUrl: "/images/categories/category-running.svg",
-        description: "Product for Running category",
-    },
-    {
-       name: "Football",
-        imageUrl: "/images/categories/category-football.svg",
-        description: "Product for Football category",
-    },
-];
+// const   CategoryData = [
+//     {
+//         name: "Running",
+//         imageUrl: "/images/categories/category-running.svg",
+//         description: "Product for Running category",
+//     },
+//     {
+//        name: "Football",
+//         imageUrl: "/images/categories/category-football.svg",
+//         description: "Product for Football category",
+//     },
+// ];
 
-const CategoryTable = () => {
+type TCategoryTableProps = {
+    categories: Category[];
+    onEdit: (category: Category) => void;
+    onDelete: (id: string) => void;
+}
+
+const CategoryTable = ({ categories, onEdit, onDelete }: TCategoryTableProps) => {
     return (
         <div className="bg-white rounded-xl border border-gray-200 ">
             <table className="w-full text-left">
@@ -32,16 +40,16 @@ const CategoryTable = () => {
 
                 {/* BODY */}
                 <tbody>
-                    {CategoryData.map((data) => (
+                    {categories.map((data,index) => (
                         <tr
-                            key={data.name}
+                            key={index}
                             className="border-b border-gray-200  last:border-0"
                         >
                             <td className="px-6 py-4">
                                 <div className="flex items-center gap-3">
                                     <div className="relative w-12 h-12 bg-gray-100 rounded-md ">
                                         <Image
-                                            src={data.imageUrl}
+                                            src={getImageUrl(data.imageUrl)}
                                             alt={data.name}
                                             fill
                                             className="object-contain"
@@ -63,10 +71,10 @@ const CategoryTable = () => {
 
                             <td className="px-6 py-10  items-center flex gap-3 text-gray-600 ">
                                 {/* actions */}
-                                <button>
+                                <button onClick={() => onEdit(data)}>
                                      <FiEdit2 size ={20}/>
                                 </button>
-                                <button>
+                                <button onClick={() => onDelete(data.id)}>
                                      <FiTrash2 size ={20}/>
                                 </button>
                             </td>

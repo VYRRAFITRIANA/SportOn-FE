@@ -35,13 +35,27 @@ export interface Transaction {
     paymentProof: string;
     status : "pending" | "paid" |"rejected";
     purchasedItems: {
-      productId: string;
+      product : Product;
       qty: number;
-    },
+    }[],
     totalPayment: number;
     customerName : string;
     customerContact : number | null;
     customerAddress : string;
     createdAt : string;
     updatedAt : string;
+}
+
+export interface LoginCredentials {
+    email : string;
+    password : string;
+}
+
+export interface LoginResponse {
+  token : string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+  }
 }

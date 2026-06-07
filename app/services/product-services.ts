@@ -1,13 +1,43 @@
 import { Product } from "../types";
 import { fetchAPI } from "../lib/api";
+import { getAuthHeaders } from "../lib/api";
 
 export const getAllProducts = async (): Promise<Product[]> => {
-  const products = await fetchAPI<Product[]>("/products");
-  return products ?? [];
+  return await fetchAPI<Product[]>("/products");
 };
 
 export const getProductById = async (
   id: string
-): Promise<Product | null> => {
+): Promise<Product> => {
   return await fetchAPI<Product>(`/products/${id}`);
 };
+
+export const createProduct = async (data: FormData): Promise<Product> => {
+  return await fetchAPI<Product>("/products", {
+    method: "POST",
+    headers: {
+     ...getAuthHeaders(),
+    },
+    body:data,
+  });
+};
+
+export const updateProduct = async (id: string, data: FormData): Promise<Product> => {  
+
+  return await fetchAPI<Product>(`/products/${id}`, {
+    method: "PUT",
+    headers: {
+     ...getAuthHeaders(),
+    },
+    body:data,
+  });
+
+}
+
+export const deleteProduct = async (id: string): Promise<void> => { return await fetchAPI<Product>(`/products/${id}`, {
+    method: "DELETE",
+    headers: {
+     ...getAuthHeaders(),
+    },
+  });
+}
